@@ -1,0 +1,9 @@
+@font-face {
+    font-family: 'Norse Font';
+    src: url('./norse-font/Norse-KaWl.otf');
+}
+
+@font-face {
+    font-family: 'Norse Font Bold';
+    src: url('./norse-font/NorseBold-2Kge.otf');
+}

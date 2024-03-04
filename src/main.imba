@@ -1,5 +1,5 @@
 global css 
-	body ff:Arial d:vflex jc:center ai:center h:100vh m:0
+	body ff:Arial d:vflex jc:center ai:center h:100vh m:0 ff:'Norse Font Bold'
 
 tag app
 	<self>

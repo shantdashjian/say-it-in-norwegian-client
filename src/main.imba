@@ -7,7 +7,7 @@ global css
 		--light-red:#fdd2d3
 		color:var(--dark-blue)
 
-	.box bgc:white bd: none w: 100% p: 0.65rem 0.8rem 0.4rem 0.8rem
+	.box bgc:white bd: none w: 100% p: 0.65rem 0.8rem 0.5rem 0.8rem
 	.header fs:2.5rem ta:center bgc:var(--light-red) p:1rem 0.8rem 0.6rem 0.8rem mb:2rem
 	.container d:vflex g:1rem 
 	textarea resize:none ta:left fs:2rem ff:'Norse Font', system-ui h: 15vh c: var(--dark-blue)

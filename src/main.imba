@@ -1,7 +1,7 @@
 global css 
 	* box-sizing:border-box
 	body 
-		d:vflex jc:start ai:center h:100vh m:0 p:1rem ff:'Norse Font Bold', system-ui
+		d:vflex jc:start ai:center h:100vh m:0 p:2rem 0.5rem 1rem 0.5rem ff:'Norse Font Bold', system-ui
 		bgi:url("./assets/background.png") bgs:cover bgp:center bgr:no-repeat bga:fixed
 		--dark-blue:#002368
 		--light-red:#fdd2d3

@@ -1,8 +1,13 @@
 global css 
 	body ff:Arial d:vflex jc:center ai:center h:100vh m:0
 
-tag App
+tag app
 	<self>
-		<div> "Say It in Norwegian"
+		<div route='/'>
+			<div> 'Say It in Norwegian'
+			<a route-to='/history'> 'History'
+		<div route='/history'>
+			<div> 'History'
+			<a route-to='/'> 'Home'
 
-imba.mount <App>
+imba.mount <app>

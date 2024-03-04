@@ -1,13 +1,13 @@
 global css 
 	* box-sizing:border-box
 	body 
-		d:vflex jc:start ai:center h:100vh m:0 p:2rem 0.5rem 0.5rem 0.5rem ff:'Norse Font Bold', system-ui
+		d:vflex jc:start ai:center h:100vh m:0 p:2rem 0.7rem 0.7rem 0.7rem ff:'Norse Font Bold', system-ui
 		bgi:url("./assets/background.png") bgs:cover bgp:center bgr:no-repeat bga:fixed
 		--dark-blue:#002368
 		--light-red:#fdd2d3
 		color:var(--dark-blue)
 
-	.box bgc:white bd: none w: 100% p: 0.7rem 0.8rem 0.4rem 0.8rem
+	.box bgc:white bd: none w: 100% p: 0.65rem 0.8rem 0.4rem 0.8rem
 	.header fs:2.5rem ta:center bgc:var(--light-red) p:1rem 0.8rem 0.6rem 0.8rem mb:2rem
 	.container d:vflex g:1rem 
 	textarea resize:none ta:left fs:2rem ff:'Norse Font', system-ui h: 15vh c: var(--dark-blue)

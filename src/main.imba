@@ -1,3 +1,5 @@
+import OpenAI from 'openai'
+
 global css 
 	* box-sizing:border-box
 	body 
@@ -5,9 +7,9 @@ global css
 		bgi:url("./assets/background.png") bgs:cover bgp:center bgr:no-repeat bga:fixed
 		--dark-blue:#002368
 		--light-red:#fdd2d3
-		color:var(--dark-blue)
+		c:var(--dark-blue)
 
-	.box bgc:white bd: none w: 100% p: 0.65rem 0.8rem 0.5rem 0.8rem
+	.box bgc:white bd: none w: 100% p: 0.65rem 0.65rem 0.5rem 0.65rem
 	.header fs:2.5rem ta:center bgc:var(--light-red) p:1rem 0.8rem 0.6rem 0.8rem mb:2rem
 	.container d:vflex g:1rem 
 	textarea resize:none ta:left fs:2rem ff:'Norse Font', system-ui h: 15vh c: var(--dark-blue)
@@ -20,19 +22,44 @@ global css
 	.history-btn flg:1
 	a td:none c:var(--dark-blue) w:100% d:block ta:center
 
+const openai = new OpenAI({
+	apiKey: import.meta.env.VITE_OPENAI_API_KEY,
+	dangerouslyAllowBrowser: true
+})
+
 tag app
+	prop englishText = ''
+	prop norwegianText = ''
+
+	def handleTranslate
+		if englishText !== ''
+			const response = await openai.chat.completions.create({
+				model: "gpt-3.5-turbo",
+				messages: [
+					{
+						"role": "system",
+						"content": "You are an English to Norwegian translator."
+					},
+					{
+						"role": "user",
+						"content": "Translate this: " + englishText
+					}
+				]
+			})
+			norwegianText = response.choices[0].message.content
+	
 	<self[d:vflex bgc:var(--dark-blue) m:0 p:1rem w:100% w@sm:600px ml@sm:auto mr@sm:auto]>
 		<header>
 			<div.box.header> 'Say It in Norwegian'
 		<div route='/'>
 			<main.container>
-				<textarea.box>
+				<textarea.box bind=englishText>
 				<section.buttons>
-					<button.box.btn> 'Translate'
+					<button.box.btn @click=handleTranslate> 'Translate'
 					<button.speak-box.btn>
 						<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
 					<button.box.btn> 'Clear'
-				<textarea.box readOnly>
+				<textarea.box bind=norwegianText readOnly>
 				<section.buttons>
 					<button.box.btn.get-giphy> 'Get Giphy'
 					<a.box.btn.history-btn route-to='/history'> 'History'

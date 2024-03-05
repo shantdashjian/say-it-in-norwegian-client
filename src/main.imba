@@ -53,7 +53,7 @@ tag app
 				messages: [
 					{
 						"role": "system",
-						"content": "You are an English to Norwegian translator."
+						"content": "You are a professional English to Norwegian translator. You give accurate translations when asked."
 					},
 					{
 						"role": "user",

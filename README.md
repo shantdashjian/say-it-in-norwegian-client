@@ -4,8 +4,7 @@ A translation app that takes in English text and translates it to Norwegian, gen
 ![Translate and Clear](screenshots/translate-and-clear.gif)
 
 ## In This Document:
-- [Say It in Norwegian!](#say-it-in-norwegian)
-  - [In This Document:](#in-this-document)
+  
   - [Live Application URL](#live-application-url)
   - [Repositories:](#repositories)
   - [How to Install the App on Your Smart Phone](#how-to-install-the-app-on-your-smart-phone)

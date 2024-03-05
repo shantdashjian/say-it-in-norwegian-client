@@ -1,5 +1,5 @@
 # Say It in Norwegian!
-A translation app that takes in English text and translates it to Norwegian, generates a Giphy based on the text, with the option of reading the Norwegian translation out loud. It is built with Imba, Node.js, Express, and Firebase Database, and powered by OpenAI, ResponsiveVoice TTS API, and giphy.com API. 
+A translation app that takes in English text and translates it to Norwegian, generates a GIF based on the text, with the option of reading the Norwegian translation out loud. It is built with Imba, Node.js, Express, and Firebase Database, and powered by OpenAI, ResponsiveVoice TTS API, and giphy.com API. 
 
 ![Translate and Clear](screenshots/translate-speak-gif-and-clear.gif)
 
@@ -19,8 +19,8 @@ A translation app that takes in English text and translates it to Norwegian, gen
 [https://sayitinnorwegian.netlify.app/](https://sayitinnorwegian.netlify.app/)
 
 ## Repositories:
-1. [Client Repository](https://github.com/shantdashjian/say-it-in-german-client).
-2. [Server Repository](https://github.com/shantdashjian/say-it-in-german-server).
+1. [Client Repository](https://github.com/shantdashjian/say-it-in-norwegian-client).
+2. [Server Repository](https://github.com/shantdashjian/say-it-in-norwegian-server).
    
 ## How to Install the App on Your Smart Phone
 This is a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps), designed to provide a native app user experience.

@@ -9,8 +9,5 @@
   "devDependencies": {
     "imba": "^2.0.0-alpha.235",
     "vite": "^5.1.4"
-  },
-  "dependencies": {
-    "openai": "^4.28.4"
   }
 }

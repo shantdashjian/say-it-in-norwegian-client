@@ -1,4 +1,3 @@
-import OpenAI from 'openai'
 import play from './utils/voiceLibrary.imba'
 
 global css 
@@ -28,18 +27,17 @@ global css
 	.gif-img h:0 w:auto pos:absolute maw:95% mah:95%
 	.gif-on h:100%
 
-const openai = new OpenAI({
-	apiKey: import.meta.env.VITE_OPENAI_API_KEY,
-	dangerouslyAllowBrowser: true
-})
-
 tag app
 	prop englishText = ''
 	prop norwegianText = ''
 	prop loadingTranslation = false
 	prop loadingGif = false
 	prop gifUrl = ''
-	
+
+	prop apiBaseUrl = import.meta.env.VITE_API_BASE_URL
+	prop resourcePath = '/api/translation'
+	prop apiEndpoint =  apiBaseUrl + resourcePath
+
 	def mount
 		const input = document.getElementById('englishTextInput')
 		input.focus()
@@ -48,21 +46,16 @@ tag app
 		if englishText !== ''
 			loadingTranslation = true
 			norwegianText = ''
-			const response = await openai.chat.completions.create({
-				model: "gpt-3.5-turbo",
-				messages: [
-					{
-						"role": "system",
-						"content": "You are a professional English to Norwegian translator. You give accurate translations when asked."
-					},
-					{
-						"role": "user",
-						"content": "Give me the exact translation of the following. I just want the translation, with no extra explanation: " + englishText
-					}
-				]
-			})
+			const options = 
+				method: 'POST'
+				body: JSON.stringify 
+					englishText: englishText
+				headers:
+					'Content-Type': 'application/json'
+			const response = await window.fetch(apiEndpoint, options)
+			const result = await response.json()
 			loadingTranslation = false
-			norwegianText = response.choices[0].message.content
+			norwegianText = result.norwegianText
 	
 	def handleSpeak
 		if norwegianText !== ''

@@ -9,10 +9,11 @@ global css
 		--light-red:#fdd2d3
 		c:var(--dark-blue)
 
-	.box bgc:white bd: none w: 100% p: 0.65rem 0.65rem 0.5rem 0.65rem
+	.box bgc:gray0 bd: none w: 100% p: 0.65rem 0.65rem 0.5rem 0.65rem
 	.header fs:2.5rem ta:center bgc:var(--light-red) p:1rem 0.8rem 0.6rem 0.8rem mb:2rem
 	.container d:vflex g:1rem 
 	textarea resize:none ta:left fs:2rem ff:'Norse Font', system-ui h: 15vh c: var(--dark-blue)
+	.textarea h:15vh
 	.buttons d:flex g:1rem jc:space-between
 	.btn bd:none ff:'Norse Font Bold', system-ui fs:1.5rem bgc:var(--light-red) c:var(--dark-blue) flg:1
 	.speak-box d:flex jc:center w:100% p:0.6rem 0.8rem 0.4rem 0.8rem
@@ -21,6 +22,8 @@ global css
 	.get-giphy-btn flg:1
 	.history-btn flg:1
 	a td:none c:var(--dark-blue) w:100% d:block ta:center
+	.loading-img h:0 w:auto zi:5
+	.on h:100%
 
 const openai = new OpenAI({
 	apiKey: import.meta.env.VITE_OPENAI_API_KEY,
@@ -30,9 +33,12 @@ const openai = new OpenAI({
 tag app
 	prop englishText = ''
 	prop norwegianText = ''
+	prop loadingTranslation = false
 
 	def handleTranslate
 		if englishText !== ''
+			loadingTranslation = true
+			norwegianText = ''
 			const response = await openai.chat.completions.create({
 				model: "gpt-3.5-turbo",
 				messages: [
@@ -46,6 +52,7 @@ tag app
 					}
 				]
 			})
+			loadingTranslation = false
 			norwegianText = response.choices[0].message.content
 	
 	<self[d:vflex bgc:var(--dark-blue) m:0 p:1rem w:100% w@sm:600px ml@sm:auto mr@sm:auto]>
@@ -53,13 +60,15 @@ tag app
 			<div.box.header> 'Say It in Norwegian'
 		<div route='/'>
 			<main.container>
-				<textarea.box bind=englishText>
+				<textarea.box bind=englishText placeholder='Write something'>
 				<section.buttons>
 					<button.box.btn @click=handleTranslate> 'Translate'
 					<button.speak-box.btn>
 						<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
 					<button.box.btn> 'Clear'
-				<textarea.box bind=norwegianText readOnly>
+				<div.textarea [pos:relative d:hflex jc:center ai:center]>
+					<img.loading-img .on=loadingTranslation src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
+					<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=norwegianText readOnly>
 				<section.buttons>
 					<button.box.btn.get-giphy> 'Get Giphy'
 					<a.box.btn.history-btn route-to='/history'> 'History'

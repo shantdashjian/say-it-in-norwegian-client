@@ -19,8 +19,8 @@ global css
 	.btn bd:none ff:'Norse Font Bold', system-ui fs:1.5rem bgc:var(--light-red) c:var(--dark-blue) flg:1
 	.speak-box d:flex jc:center w:100% p:0.6rem 0.8rem 0.4rem 0.8rem
 	.speak-btn w:2rem h:2rem
-	.giphy-box mih:25vh h:fit-content h@sm:fit-content
-	.get-giphy-btn flg:1
+	.gif-box mih:25vh h:fit-content h@sm:fit-content
+	.get-gif-btn flg:1
 	.history-btn flg:1
 	a td:none c:var(--dark-blue) w:100% d:block ta:center
 	.loading-img h:0 w:auto zi:5
@@ -79,9 +79,9 @@ tag app
 					<img.loading-img .on=loadingTranslation src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
 					<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=norwegianText readOnly>
 				<section.buttons>
-					<button.box.btn.get-giphy> 'Get Giphy'
+					<button.box.btn.get-gif> 'Get GIF'
 					<a.box.btn.history-btn route-to='/history'> 'History'
-				<div.box.giphy-box>
+				<div.box.gif-box>
 		<div route='/history'>
 			<div> 'History'
 			<a.box.btn.history-btn route-to='/'> 'Home'

@@ -5,8 +5,6 @@ A translation app that takes in English text and translates it to Norwegian, gen
 ![history-page](screenshots/history-page.png "History Page")
 
 ## In This Document:
-- [Say It in Norwegian!](#say-it-in-norwegian)
-  - [In This Document:](#in-this-document)
   - [Live Application URL](#live-application-url)
   - [Repositories:](#repositories)
   - [How to Install the App on Your Smart Phone](#how-to-install-the-app-on-your-smart-phone)
@@ -14,8 +12,8 @@ A translation app that takes in English text and translates it to Norwegian, gen
     - [Home Page](#home-page)
     - [History Page](#history-page)
   - [Technologies Used](#technologies-used)
-  - [Future Features:](#future-features)
-  - [Challenges and Learning Points:](#challenges-and-learning-points)
+  - [Future Features](#future-features)
+  - [Challenges and Learning Points](#challenges-and-learning-points)
 
 ## Live Application URL
 [https://sayitinnorwegian.netlify.app/](https://sayitinnorwegian.netlify.app/)
@@ -54,10 +52,10 @@ This is a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Pro
 5. [ResponsiveVoice API](https://responsivevoice.org/) for generating the TTS (Text to Speech).
 6. [Progressive Web Apps methodology](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) for native app user experience.
 
-## Future Features:
+## Future Features
 1. The traveller can speak English into the app and the app would capture it in writing and do the translation to Norwegian automatically. 
 
-## Challenges and Learning Points:
+## Challenges and Learning Points
 1. This is the first full stack app I build using Imba.
 
 <hr>

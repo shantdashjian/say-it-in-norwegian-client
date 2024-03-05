@@ -1,8 +1,7 @@
 # Say It in Norwegian!
 A translation app that takes in English text and translates it to Norwegian, generates a Giphy based on the text, with the option of reading the Norwegian translation out loud. It is built with Imba, Node.js, Express, and Firebase Database, and powered by OpenAI, ResponsiveVoice TTS API, and giphy.com API. 
 
-![Translate and Clear](screenshots/translate-and-clear.gif) "Home Page")
-![history-page](screenshots/history-page.png "History Page")
+![Translate and Clear](screenshots/translate-and-clear.gif) "Translate and Clear")
 
 ## In This Document:
 - [Say It in Norwegian!](#say-it-in-norwegian)

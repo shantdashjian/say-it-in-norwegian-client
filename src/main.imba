@@ -19,12 +19,14 @@ global css
 	.btn bd:none ff:'Norse Font Bold', system-ui fs:1.5rem bgc:var(--light-red) c:var(--dark-blue) flg:1
 	.speak-box d:flex jc:center w:100% p:0.6rem 0.8rem 0.4rem 0.8rem
 	.speak-btn w:2rem h:2rem
-	.gif-box mih:25vh h:fit-content h@sm:fit-content
 	.get-gif-btn flg:1
 	.history-btn flg:1
 	a td:none c:var(--dark-blue) w:100% d:block ta:center
-	.loading-img h:0 w:auto zi:5
+	.gif-box mih:25vh pos:relative
+	.loading-img h:0 w:auto zi:5 pos:absolute maw:95% mah:95%
 	.on h:100%
+	.gif-img h:0 w:auto pos:absolute maw:95% mah:95%
+	.gif-on h:100%
 
 const openai = new OpenAI({
 	apiKey: import.meta.env.VITE_OPENAI_API_KEY,
@@ -35,6 +37,12 @@ tag app
 	prop englishText = ''
 	prop norwegianText = ''
 	prop loadingTranslation = false
+	prop loadingGif = false
+	prop gifUrl = ''
+	
+	def mount
+		const input = document.getElementById('englishTextInput')
+		input.focus()
 
 	def handleTranslate
 		if englishText !== ''
@@ -49,7 +57,7 @@ tag app
 					},
 					{
 						"role": "user",
-						"content": "Translate this: " + englishText
+						"content": "Give me the exact translation of the following. I just want the translation, with no extra explanation: " + englishText
 					}
 				]
 			})
@@ -63,13 +71,31 @@ tag app
 	def handleClear
 		englishText = ''
 		norwegianText = ''
+		loadingGif = false
+		gifUrl = ''
+		const input = document.getElementById('englishTextInput')
+		input.focus()
+
+	def handleGetGif
+		if norwegianText !== ''
+			loadingGif = true
+			gifUrl = ''
+			const apiKey = import.meta.env.VITE_GIPHY_API_KEY
+			const searchText = englishText
+			const rating = 'g'
+			const response = await window.fetch("https://api.giphy.com/v1/gifs/translate?api_key={apiKey}&s={searchText}&rating={rating}")
+			const result = await response.json()
+			gifUrl = result.data.images.original.url
+			loadingGif = false
+		else
+			loadingGif = true
 
 	<self[d:vflex bgc:var(--dark-blue) m:0 p:1rem w:100% w@sm:600px ml@sm:auto mr@sm:auto]>
 		<header>
 			<div.box.header> 'Say It in Norwegian'
 		<div route='/'>
 			<main.container>
-				<textarea.box bind=englishText placeholder='Write something'>
+				<textarea.box bind=englishText placeholder='Write something' id='englishTextInput'>
 				<section.buttons>
 					<button.box.btn @click=handleTranslate> 'Translate'
 					<button.speak-box.btn @click=handleSpeak>
@@ -79,9 +105,11 @@ tag app
 					<img.loading-img .on=loadingTranslation src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
 					<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=norwegianText readOnly>
 				<section.buttons>
-					<button.box.btn.get-gif> 'Get GIF'
+					<button.box.btn.get-gif @click=handleGetGif> 'Get GIF'
 					<a.box.btn.history-btn route-to='/history'> 'History'
-				<div.box.gif-box>
+				<div.box.gif-box [d:hflex jc:center ai:center]>
+					<img.loading-img .on=loadingGif src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
+					<img.gif-img .gif-on=gifUrl src=gifUrl>
 		<div route='/history'>
 			<div> 'History'
 			<a.box.btn.history-btn route-to='/'> 'Home'

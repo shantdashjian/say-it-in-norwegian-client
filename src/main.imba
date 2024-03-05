@@ -1,4 +1,5 @@
 import OpenAI from 'openai'
+import play from './utils/voiceLibrary.imba'
 
 global css 
 	* box-sizing:border-box
@@ -55,6 +56,10 @@ tag app
 			loadingTranslation = false
 			norwegianText = response.choices[0].message.content
 	
+	def handleSpeak
+		if norwegianText !== ''
+			play(norwegianText)
+
 	<self[d:vflex bgc:var(--dark-blue) m:0 p:1rem w:100% w@sm:600px ml@sm:auto mr@sm:auto]>
 		<header>
 			<div.box.header> 'Say It in Norwegian'
@@ -63,7 +68,7 @@ tag app
 				<textarea.box bind=englishText placeholder='Write something'>
 				<section.buttons>
 					<button.box.btn @click=handleTranslate> 'Translate'
-					<button.speak-box.btn>
+					<button.speak-box.btn @click=handleSpeak>
 						<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
 					<button.box.btn> 'Clear'
 				<div.textarea [pos:relative d:hflex jc:center ai:center]>

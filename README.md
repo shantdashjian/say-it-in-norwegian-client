@@ -1,17 +1,21 @@
 # Say It in Norwegian!
 A translation app that takes in English text and translates it to Norwegian, generates a Giphy based on the text, with the option of reading the Norwegian translation out loud. It is built with Imba, Node.js, Express, and Firebase Database, and powered by OpenAI, ResponsiveVoice TTS API, and giphy.com API. 
 
-![home-page](images/home-page.png "Home Page")
-![history-page](images/history-page.png "History Page")
+![home-page](screenshots/home-page.png "Home Page")
+![history-page](screenshots/history-page.png "History Page")
 
 ## In This Document:
-- [Live Application URL](#live-application-url)
-- [Repositories](#repositories)
-- [How to Install the App on Your Smart Phone](#how-to-install-the-app-on-your-smart-phone)
-- [How to Use the Application](#how-to-use-the-application)
-- [Technologies Used](#technologies-used)
-- [Future Features:](#future-features)
-- [Challenges and Learning Points:](#challenges-and-learning-points)
+- [Say It in Norwegian!](#say-it-in-norwegian)
+  - [In This Document:](#in-this-document)
+  - [Live Application URL](#live-application-url)
+  - [Repositories:](#repositories)
+  - [How to Install the App on Your Smart Phone](#how-to-install-the-app-on-your-smart-phone)
+  - [How to Use the Application](#how-to-use-the-application)
+    - [Home Page](#home-page)
+    - [History Page](#history-page)
+  - [Technologies Used](#technologies-used)
+  - [Future Features:](#future-features)
+  - [Challenges and Learning Points:](#challenges-and-learning-points)
 
 ## Live Application URL
 [https://sayitinnorwegian.netlify.app/](https://sayitinnorwegian.netlify.app/)

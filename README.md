@@ -50,7 +50,8 @@ This is a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Pro
 3. [Firebase Database](https://firebase.google.com/docs/database) for persisting the history of translations.
 4. [OpenAI API](https://platform.openai.com/docs/introduction/overview) for generating the translation.
 5. [ResponsiveVoice API](https://responsivevoice.org/) for generating the TTS (Text to Speech).
-6. [Progressive Web Apps methodology](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) for native app user experience.
+6. [giphy.com API](https://developers.giphy.com/) for generating GIFs from the text.
+8. [Progressive Web Apps methodology](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps) for native app user experience.
 
 ## Future Features
 1. The traveller can speak English into the app and the app would capture it in writing and do the translation to Norwegian automatically. 

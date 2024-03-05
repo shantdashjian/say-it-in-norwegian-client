@@ -31,8 +31,8 @@ This is a [Progressive Web App](https://developer.mozilla.org/en-US/docs/Web/Pro
 2. The traveller writes the phrase in English.
 3. The traveller clicks on Translate.
 4. The app should show the translation in Norwegian.
-5. It should also display a relevant giphy.
 6. The traveller can click on the Speak button and the app should read the translation out loud.
+5. The traveller can click on Get GIF and it should display a relevant GIF.
 7. The traveller can click on Clear to clear the input area and start over.
    
 ### History Page

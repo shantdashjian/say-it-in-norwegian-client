@@ -60,6 +60,10 @@ tag app
 		if norwegianText !== ''
 			play(norwegianText)
 
+	def handleClear
+		englishText = ''
+		norwegianText = ''
+
 	<self[d:vflex bgc:var(--dark-blue) m:0 p:1rem w:100% w@sm:600px ml@sm:auto mr@sm:auto]>
 		<header>
 			<div.box.header> 'Say It in Norwegian'
@@ -70,7 +74,7 @@ tag app
 					<button.box.btn @click=handleTranslate> 'Translate'
 					<button.speak-box.btn @click=handleSpeak>
 						<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
-					<button.box.btn> 'Clear'
+					<button.box.btn @click=handleClear> 'Clear'
 				<div.textarea [pos:relative d:hflex jc:center ai:center]>
 					<img.loading-img .on=loadingTranslation src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
 					<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=norwegianText readOnly>

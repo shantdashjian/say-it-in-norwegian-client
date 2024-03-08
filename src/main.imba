@@ -1,6 +1,6 @@
 import './home'
 import './history'
-import {persistData, loadData} from './persist'
+import {persistData, loadData} from './utils/persist.imba'
 
 tag app	
 	prop translations = loadData()

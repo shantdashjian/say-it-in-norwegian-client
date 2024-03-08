@@ -39,8 +39,10 @@ tag home
 	prop apiEndpoint =  apiBaseUrl + resourcePath
 
 	def mount
+		translation = getNewTranslation()
 		const input = document.getElementById('englishTextInput')
 		input.focus()
+		imba.commit()
 	
 	def handleTranslate
 		if translation.englishText !== ''
@@ -68,7 +70,7 @@ tag home
 			id: null,
 			englishText: '',
 			norwegianText: '',
-			gifUrl: ''
+			gifUrl: '/src/assets/loading.webp'
 		}	
 	
 	def handleClear

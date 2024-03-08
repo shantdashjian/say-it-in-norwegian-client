@@ -1,5 +1,6 @@
 import play from './utils/voiceLibrary.imba'
 import { v4 as uuidv4 } from 'uuid'
+import loadingImgUrl from './assets/loading.webp'
 
 global css 
 	* box-sizing:border-box
@@ -70,7 +71,7 @@ tag home
 			id: null,
 			englishText: '',
 			norwegianText: '',
-			gifUrl: './assets/loading.webp'
+			gifUrl: loadingImgUrl
 		}	
 	
 	def handleClear

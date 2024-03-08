@@ -1,4 +1,5 @@
 import './home'
+import './history'
 
 tag app	
 	
@@ -8,7 +9,6 @@ tag app
 		<div route='/'>
 			<home>
 		<div route='/history'>
-			<main.container>
-				<a.box.btn.history-btn route-to='/'> 'Back to Home'
+			<history>
 
 imba.mount <app>

@@ -7,6 +7,7 @@ global css
 		bgi:url("./assets/background.png") bgs:cover bgp:center bgr:no-repeat bga:fixed
 		--dark-blue:#002368
 		--light-red:#fdd2d3
+		--strong-red:#f35658
 		c:var(--dark-blue)
 
 	.box bgc:gray0 bd: none w: 100% p: 0.65rem 0.65rem 0.5rem 0.65rem
@@ -19,13 +20,14 @@ global css
 	.speak-box d:flex jc:center w:100% p:0.6rem 0.8rem 0.4rem 0.8rem
 	.speak-btn w:2rem h:2rem
 	.get-gif-btn flg:1
-	.history-btn flg:1
+	.history-btn w:fit-content as:center
 	a td:none c:var(--dark-blue) w:100% d:block ta:center
 	.gif-box mih:25vh pos:relative
 	.loading-img h:0 w:auto zi:5 pos:absolute maw:95% mah:95%
 	.on h:100%
 	.gif-img h:0 w:auto pos:absolute maw:95% mah:95%
 	.gif-on h:100%
+	.history-gif-img h:100% w:auto pos:absolute maw:100% mah:100%
 
 tag home
 	prop englishText = ''
@@ -79,6 +81,7 @@ tag home
 			const response = await window.fetch("https://api.giphy.com/v1/gifs/translate?api_key={apiKey}&s={searchText}&rating={rating}")
 			const result = await response.json()
 			gifUrl = result.data.images.original.url
+			console.log(gifUrl)
 			loadingGif = false
 		else
 			loadingGif = true

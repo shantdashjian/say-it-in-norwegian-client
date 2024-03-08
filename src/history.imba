@@ -14,6 +14,11 @@ tag history
 		.highlighted bgc: var(--strong-red)
 		.history-gif-img h:100% w:auto pos:absolute maw:100% mah:100%
 
+	def handleHighlight key
+		let translation = translations.get(key)
+		translation.highlighted = !translation.highlighted
+		persistData translations
+
 	def handleDelete key
 		translations.delete(key)
 		persistData translations
@@ -26,7 +31,7 @@ tag history
 				<main.container>
 					if translations.size > 0
 						for [key, translation] of reverse(translations)
-							<div.box.tranlation .highlighted=translation.highlighted>
+							<div.box.tranlation .highlighted=translation.highlighted @click.stop=handleHighlight(key)>
 								<div.translation-top>
 									<div.translation-text>
 										"\"{translation.englishText}\" traslates to \"{translation.norwegianText}\""

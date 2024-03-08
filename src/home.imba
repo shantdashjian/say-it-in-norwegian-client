@@ -1,4 +1,5 @@
 import play from './utils/voiceLibrary.imba'
+import { v4 as uuidv4 } from 'uuid'
 
 global css 
 	* box-sizing:border-box
@@ -22,19 +23,16 @@ global css
 	.get-gif-btn flg:1
 	.history-btn w:fit-content as:center
 	a td:none c:var(--dark-blue) w:100% d:block ta:center
-	.gif-box mih:25vh pos:relative
+	.gif-box mih:25vh pos:relative d:hflex jc:center
 	.loading-img h:0 w:auto zi:5 pos:absolute maw:95% mah:95%
 	.on h:100%
 	.gif-img h:0 w:auto pos:absolute maw:95% mah:95%
 	.gif-on h:100%
-	.history-gif-img h:100% w:auto pos:absolute maw:100% mah:100%
 
 tag home
-	prop englishText = ''
-	prop norwegianText = ''
 	prop loadingTranslation = false
 	prop loadingGif = false
-	prop gifUrl = ''
+	prop translation = getNewTranslation()
 
 	prop apiBaseUrl = import.meta.env.VITE_API_BASE_URL
 	prop resourcePath = '/api/translation'
@@ -45,61 +43,69 @@ tag home
 		input.focus()
 	
 	def handleTranslate
-		if englishText !== ''
+		if translation.englishText !== ''
 			loadingTranslation = true
-			norwegianText = ''
+			translation.norwegianText = ''
 			const options = 
 				method: 'POST'
 				body: JSON.stringify 
-					englishText: englishText
+					englishText: translation.englishText
 				headers:
 					'Content-Type': 'application/json'
 			const response = await window.fetch(apiEndpoint, options)
 			const result = await response.json()
 			loadingTranslation = false
-			norwegianText = result.norwegianText
+			translation.norwegianText = result.norwegianText
+			translation.id = uuidv4()
+			emit('saveTranslation', translation)
 	
 	def handleSpeak
-		if norwegianText !== ''
-			play(norwegianText)
+		if translation.norwegianText !== ''
+			play(translation.norwegianText)
 
+	def getNewTranslation 
+		{
+			id: null,
+			englishText: '',
+			norwegianText: '',
+			gifUrl: ''
+		}	
+	
 	def handleClear
-		englishText = ''
-		norwegianText = ''
+		translation = getNewTranslation()
 		loadingGif = false
-		gifUrl = ''
 		const input = document.getElementById('englishTextInput')
 		input.focus()
 
 	def handleGetGif
-		if norwegianText !== ''
+		if translation.norwegianText !== ''
 			loadingGif = true
-			gifUrl = ''
+			translation.gifUrl = ''
 			const apiKey = import.meta.env.VITE_GIPHY_API_KEY
-			const searchText = englishText
+			const searchText = translation.englishText
 			const rating = 'g'
 			const response = await window.fetch("https://api.giphy.com/v1/gifs/translate?api_key={apiKey}&s={searchText}&rating={rating}")
 			const result = await response.json()
-			gifUrl = result.data.images.original.url
-			console.log(gifUrl)
+			translation.gifUrl = result.data.images.original.url
 			loadingGif = false
+			emit('saveTranslation', translation)
 		else
 			loadingGif = true
 
 	<self>
 		<main.container>
-			<textarea.box bind=englishText placeholder='Write something' id='englishTextInput'>
+			<textarea.box bind=translation.englishText placeholder='Write something' id='englishTextInput'>
 			<section.buttons>
 				<button.box.btn @click=handleTranslate> 'Translate'
 				<button.speak-box.btn @click=handleSpeak>
 					<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
 				<button.box.btn @click=handleClear> 'Clear'
 			<div.textarea [pos:relative d:hflex jc:center ai:center]>
-				<img.loading-img .on=loadingTranslation src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
-				<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=norwegianText readOnly>
+				<img.loading-img .on=loadingTranslation src='./assets/loading.webp'>
+				<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=translation.norwegianText readOnly>
 			<section.buttons>
 				<button.box.btn.get-gif @click=handleGetGif> 'Get GIF'
 				<a.box.btn.history-btn route-to='/history'> 'History'
 			<div.box.gif-box [d:hflex jc:center ai:center]>
-				<img.loading-img .on=loadingGif src='https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExbWx1Z2RxdG9mOHV0dHRna2lvd20yczBqcHM4MGNoNW9qYjBxaHUyMSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/qEn23ee3alV8k/giphy.gif'>
-				<img.gif-img .gif-on=gifUrl src=gifUrl>
+				<img.loading-img .on=loadingGif src='./assets/loading.webp'>
+				<img.gif-img .gif-on=translation.gifUrl src=translation.gifUrl>

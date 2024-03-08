@@ -6,7 +6,7 @@ A translation app that takes in English text and translates it to Norwegian, gen
 ## In This Document:
   
   - [Live Application URL](#live-application-url)
-  - [Repositories:](#repositories)
+  - [Repositories](#repositories)
   - [How to Install the App on Your Smart Phone](#how-to-install-the-app-on-your-smart-phone)
   - [How to Use the Application](#how-to-use-the-application)
     - [Home Page](#home-page)
@@ -18,7 +18,7 @@ A translation app that takes in English text and translates it to Norwegian, gen
 ## Live Application URL
 [https://sayitinnorwegian.netlify.app/](https://sayitinnorwegian.netlify.app/)
 
-## Repositories:
+## Repositories
 1. [Client Repository](https://github.com/shantdashjian/say-it-in-norwegian-client).
 2. [Server Repository](https://github.com/shantdashjian/say-it-in-norwegian-server).
    

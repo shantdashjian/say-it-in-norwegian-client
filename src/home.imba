@@ -70,7 +70,7 @@ tag home
 			id: null,
 			englishText: '',
 			norwegianText: '',
-			gifUrl: '/src/assets/loading.webp'
+			gifUrl: './assets/loading.webp'
 		}	
 	
 	def handleClear

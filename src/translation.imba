@@ -16,7 +16,7 @@ tag translation
 			<div.box.tranlation .highlighted=translation.highlighted @click.stop=emit("highlight")>
 				<div.translation-top>
 					<div.translation-text>
-						"\"{translation.englishText}\" traslates to \"{translation.norwegianText}\""
+						"\"{translation.englishText}\" translates to \"{translation.norwegianText}\""
 					<div.delete-btn-box>
 						<button.delete-btn @click=emit("delete")>
 				<div.translation-bottom.gif-box>

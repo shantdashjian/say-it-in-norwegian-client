@@ -27,6 +27,6 @@ tag history
 				<main.container>
 					if translations.size > 0
 						for [key, translation] of reverse(translations)
-							<translation key=key translation=translation @highlight=handleHighlight(key) @delete=handleDelete(key)>
+							<translation key=key translation=translation @highlight=handleHighlight(key) @deleteTranslation=handleDelete(key)>
 					else
 						<div.message-text> "There are no translations in your history!"		

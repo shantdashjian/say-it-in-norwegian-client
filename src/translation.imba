@@ -18,6 +18,6 @@ tag translation
 					<div.translation-text>
 						"\"{translation.englishText}\" translates to \"{translation.norwegianText}\""
 					<div.delete-btn-box>
-						<button.delete-btn @click=emit("delete")>
+						<button.delete-btn @click=emit("deleteTranslation")>
 				<div.translation-bottom.gif-box>
 					<img.history-gif-img src=translation.gifUrl>

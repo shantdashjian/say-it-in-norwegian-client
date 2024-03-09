@@ -20,8 +20,8 @@ global css
 	.textarea h:15vh
 	.buttons d:flex g:1rem jc:space-between
 	.btn bd:none ff:'Norse Font Bold', system-ui fs:1.5rem bgc:var(--light-red) c:var(--dark-blue) flg:1
-	.btn@hover bgc:var(--strong-red)
-	.btn@focus bgc:var(--strong-red)
+	.btn@hover@sm bgc:var(--strong-red)
+	.btn@focus@sm bgc:var(--strong-red)
 	.clicked bgc:var(--strong-red) transform: translateY(4px) transition: background-color 0.3s
 	.speak-box d:flex jc:center w:100% p:0.6rem 0.8rem 0.4rem 0.8rem
 	.speak-btn w:2rem h:2rem
@@ -108,7 +108,7 @@ tag home
 			<textarea.box bind=translation.englishText placeholder='Write something' id='englishTextInput'>
 			<section.buttons>
 				<button.box.btn disabled=!translation.englishText @click=handleTranslate> 'Translate'
-				<button.speak-box.btn disabled=!translation.englishText @click=handleSpeak>
+				<button.speak-box.btn disabled=!translation.norwegianText @click=handleSpeak>
 					<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
 				<button.box.btn @click=handleClear> 'Clear'
 			<div.textarea [pos:relative d:hflex jc:center ai:center]>

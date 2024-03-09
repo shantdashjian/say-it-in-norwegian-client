@@ -1,6 +1,7 @@
 import play from './utils/voiceLibrary.imba'
 import { v4 as uuidv4 } from 'uuid'
 import loadingImgUrl from './assets/loading.webp'
+import { handleClick } from './utils/events'
 
 global css 
 	* box-sizing:border-box
@@ -19,6 +20,9 @@ global css
 	.textarea h:15vh
 	.buttons d:flex g:1rem jc:space-between
 	.btn bd:none ff:'Norse Font Bold', system-ui fs:1.5rem bgc:var(--light-red) c:var(--dark-blue) flg:1
+	.btn@hover bgc:var(--strong-red)
+	.btn@focus bgc:var(--strong-red)
+	.clicked bgc:var(--strong-red) transform: translateY(4px) transition: background-color 0.3s
 	.speak-box d:flex jc:center w:100% p:0.6rem 0.8rem 0.4rem 0.8rem
 	.speak-btn w:2rem h:2rem
 	.get-gif-btn flg:1
@@ -45,8 +49,9 @@ tag home
 		input.focus()
 		imba.commit()
 	
-	def handleTranslate
+	def handleTranslate e
 		if translation.englishText !== ''
+			handleClick(e)
 			loadingTranslation = true
 			translation.norwegianText = ''
 			const options = 
@@ -62,8 +67,9 @@ tag home
 			translation.id = uuidv4()
 			emit('saveTranslation', translation)
 	
-	def handleSpeak
+	def handleSpeak e
 		if translation.norwegianText !== ''
+			handleClick(e)
 			play(translation.norwegianText)
 
 	def getNewTranslation 
@@ -74,14 +80,16 @@ tag home
 			gifUrl: loadingImgUrl
 		}	
 	
-	def handleClear
+	def handleClear e
+		handleClick(e)
 		translation = getNewTranslation()
 		loadingGif = false
 		const input = document.getElementById('englishTextInput')
 		input.focus()
 
-	def handleGetGif
+	def handleGetGif e
 		if translation.norwegianText !== ''
+			handleClick(e)
 			loadingGif = true
 			translation.gifUrl = ''
 			const apiKey = import.meta.env.VITE_GIPHY_API_KEY
@@ -99,16 +107,16 @@ tag home
 		<main.container>
 			<textarea.box bind=translation.englishText placeholder='Write something' id='englishTextInput'>
 			<section.buttons>
-				<button.box.btn @click=handleTranslate> 'Translate'
-				<button.speak-box.btn @click=handleSpeak>
+				<button.box.btn disabled=!translation.englishText @click=handleTranslate> 'Translate'
+				<button.speak-box.btn disabled=!translation.englishText @click=handleSpeak>
 					<svg.speak-btn src='./assets/volume-high-solid.svg' alt='Speak'>
 				<button.box.btn @click=handleClear> 'Clear'
 			<div.textarea [pos:relative d:hflex jc:center ai:center]>
 				<img.loading-img .on=loadingTranslation src='./assets/loading.webp'>
 				<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=translation.norwegianText readOnly>
 			<section.buttons>
-				<button.box.btn.get-gif @click=handleGetGif> 'Get GIF'
-				<a.box.btn.history-btn route-to='/history'> 'History'
+				<button.box.btn.get-gif disabled=!translation.englishText @click=handleGetGif> 'Get GIF'
+				<a.box.btn.history-btn route-to='/history' @click=handleClick(e)> 'History'
 			<div.box.gif-box [d:hflex jc:center ai:center]>
 				<img.loading-img .on=loadingGif src='./assets/loading.webp'>
 				<img.gif-img .gif-on=translation.gifUrl src=translation.gifUrl>

@@ -1,6 +1,7 @@
 import { reverse } from './utils/operations'
 import {persistData} from './utils/persist.imba'
 import './translation'
+import { handleClick } from './utils/events'
 
 tag history
 	prop translations = null
@@ -21,7 +22,7 @@ tag history
 	def render
 		<self>
 			<main.container>
-				<a.box.btn.history-btn route-to='/'> 'Back to Home'
+				<a.box.btn.history-btn route-to='/' @click=handleClick(e)> 'Back to Home'
 				<div.box.small-header> 'Your History'
 				<main.container>
 					if translations.size > 0

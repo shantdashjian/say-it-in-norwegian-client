@@ -1,7 +1,9 @@
 export def handleClick e
 	const button = getButton e
 	button.classList.toggle('clicked')
-	setTimeout(&, 300) do() button.classList.toggle('clicked')
+	setTimeout(&, 300) do() 
+		button.classList.toggle('clicked')
+		button.blur()
 
 def getButton e
 	if e.target.tagName == 'BUTTON'  

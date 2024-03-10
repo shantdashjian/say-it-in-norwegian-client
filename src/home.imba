@@ -9,8 +9,8 @@ global css
 		d:vflex jc:start ai:center  m:0 p:1rem 0.7rem 1rem 0.7rem ff:'Norse Font Bold', system-ui
 		bgi:url("./assets/background.png") bgs:cover bgp:center bgr:no-repeat bga:fixed
 		--dark-blue:#002368
-		--light-red:#fdd2d3
-		--strong-red:#f35658
+		--light-red:red1
+		--strong-red:red3
 		c:var(--dark-blue)
 
 	.box bgc:gray0 bd: none w: 100% p: 0.65rem 0.65rem 0.5rem 0.65rem

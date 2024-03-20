@@ -1,6 +1,11 @@
 import Snowflakes from 'magic-snowflakes'
 
 export def handleClick e, snow?
+	const button = getButton e
+	button.classList.toggle('clicked')
+	setTimeout(&, 300) do() 
+		button.classList.toggle('clicked')
+		button.blur()
 	if snow? 
 		let snowflakes = new Snowflakes({
 			color: '#5ECDEF', # Default: "#5ECDEF"
@@ -19,11 +24,6 @@ export def handleClick e, snow?
 		setTimeout(&,8000) do() 
 			snowflakes.stop()
 			snowflakes.destroy()
-	const button = getButton e
-	button.classList.toggle('clicked')
-	setTimeout(&, 300) do() 
-		button.classList.toggle('clicked')
-		button.blur()
 
 def getButton e
 	if e.target.tagName == 'BUTTON'  

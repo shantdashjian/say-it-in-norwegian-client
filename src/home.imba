@@ -14,7 +14,7 @@ global css
 		c:var(--dark-blue)
 
 	.box bgc:gray0 bd: none w: 100% p: 0.65rem 0.65rem 0.5rem 0.65rem
-	.header fs:2.5rem ta:center bgc:var(--light-red) p:1rem 0.8rem 0.6rem 0.8rem mb:2rem
+	.header fs:2.5rem ta:center bgc:var(--light-red) p:1rem 0.8rem 0.6rem 0.8rem mb:1rem
 	.container d:vflex g:1rem 
 	textarea resize:none ta:left fs:2rem ff:'Norse Font', system-ui h: 15vh c: var(--dark-blue)
 	.textarea h:15vh
@@ -38,6 +38,7 @@ tag home
 	prop loadingTranslation = false
 	prop loadingGif = false
 	prop translation = getNewTranslation()
+	prop snow? = true
 
 	prop apiBaseUrl = import.meta.env.VITE_API_BASE_URL
 	prop resourcePath = '/api/translation'
@@ -51,7 +52,7 @@ tag home
 	
 	def handleTranslate e
 		if translation.englishText !== ''
-			handleClick(e)
+			handleClick(e, snow?)
 			loadingTranslation = true
 			translation.norwegianText = ''
 			const options = 
@@ -69,7 +70,7 @@ tag home
 	
 	def handleSpeak e
 		if translation.norwegianText !== ''
-			handleClick(e)
+			handleClick(e, snow?)
 			play(translation.norwegianText)
 
 	def getNewTranslation 
@@ -81,7 +82,7 @@ tag home
 		}	
 	
 	def handleClear e
-		handleClick(e)
+		handleClick(e, snow?)
 		translation = getNewTranslation()
 		loadingGif = false
 		const input = document.getElementById('englishTextInput')
@@ -89,7 +90,7 @@ tag home
 
 	def handleGetGif e
 		if translation.norwegianText !== ''
-			handleClick(e)
+			handleClick(e, snow?)
 			loadingGif = true
 			translation.gifUrl = ''
 			const apiKey = import.meta.env.VITE_GIPHY_API_KEY
@@ -105,6 +106,9 @@ tag home
 
 	<self>
 		<main.container>
+			<div.snow [as:flex-end fs:1.5rem]>
+				<label htmlFor='snow-checkboax' [c:white]> 'Snow'
+				<input type='checkbox' id='snow-checkboax' bind=snow?>
 			<textarea.box bind=translation.englishText placeholder='Write something' id='englishTextInput'>
 			<section.buttons>
 				<button.box.btn disabled=!translation.englishText @click=handleTranslate> 'Translate'
@@ -116,7 +120,7 @@ tag home
 				<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=translation.norwegianText readOnly>
 			<section.buttons>
 				<button.box.btn.get-gif disabled=!translation.englishText @click=handleGetGif> 'Get GIF'
-				<a.box.btn.history-btn route-to='/history' @click=handleClick(e)> 'History'
+				<a.box.btn.history-btn route-to='/history' @click=handleClick(e, snow?)> 'History'
 			<div.box.gif-box [d:hflex jc:center ai:center]>
 				<img.loading-img .on=loadingGif src='./assets/loading.webp'>
 				<img.gif-img .gif-on=translation.gifUrl src=translation.gifUrl>

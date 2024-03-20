@@ -106,9 +106,9 @@ tag home
 
 	<self>
 		<main.container>
-			<div.snow [as:flex-end fs:1.5rem]>
+			<div.snow [as:flex-end fs:1.5rem d:hflex ai:start g:0.3rem]>
 				<label htmlFor='snow-checkboax' [c:white]> 'Snow'
-				<input type='checkbox' id='snow-checkboax' bind=snow?>
+				<input type='checkbox' id='snow-checkboax' bind=snow? [scale:1.5]>
 			<textarea.box bind=translation.englishText placeholder='Write something' id='englishTextInput'>
 			<section.buttons>
 				<button.box.btn disabled=!translation.englishText @click=handleTranslate> 'Translate'

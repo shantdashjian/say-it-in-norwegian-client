@@ -1,7 +1,7 @@
 import play from './utils/voiceLibrary.imba'
 import { v4 as uuidv4 } from 'uuid'
 import loadingImgUrl from './assets/loading.webp'
-import { handleClick } from './utils/events'
+import { handleClick, handleSnow } from './utils/events'
 
 global css 
 	* box-sizing:border-box
@@ -52,7 +52,9 @@ tag home
 	
 	def handleTranslate e
 		if translation.englishText !== ''
-			handleClick(e, snow?)
+			handleClick(e)
+			if snow?
+				handleSnow()
 			loadingTranslation = true
 			translation.norwegianText = ''
 			const options = 
@@ -70,7 +72,7 @@ tag home
 	
 	def handleSpeak e
 		if translation.norwegianText !== ''
-			handleClick(e, snow?)
+			handleClick(e)
 			play(translation.norwegianText)
 
 	def getNewTranslation 
@@ -82,7 +84,7 @@ tag home
 		}	
 	
 	def handleClear e
-		handleClick(e, snow?)
+		handleClick(e)
 		translation = getNewTranslation()
 		loadingGif = false
 		const input = document.getElementById('englishTextInput')
@@ -90,7 +92,7 @@ tag home
 
 	def handleGetGif e
 		if translation.norwegianText !== ''
-			handleClick(e, snow?)
+			handleClick(e)
 			loadingGif = true
 			translation.gifUrl = ''
 			const apiKey = import.meta.env.VITE_GIPHY_API_KEY
@@ -120,7 +122,7 @@ tag home
 				<textarea.box [pos:absolute t:50% l:50% translate:-50% -50%] bind=translation.norwegianText readOnly>
 			<section.buttons>
 				<button.box.btn.get-gif disabled=!translation.englishText @click=handleGetGif> 'Get GIF'
-				<a.box.btn.history-btn route-to='/history' @click=handleClick(e, snow?)> 'History'
+				<a.box.btn.history-btn route-to='/history' @click=handleClick(e)> 'History'
 			<div.box.gif-box [d:hflex jc:center ai:center]>
 				<img.loading-img .on=loadingGif src='./assets/loading.webp'>
 				<img.gif-img .gif-on=translation.gifUrl src=translation.gifUrl>

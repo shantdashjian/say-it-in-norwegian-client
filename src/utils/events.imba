@@ -10,7 +10,7 @@ export def handleClick e, snow?
 			let snowflakes = new Snowflakes({
 				color: '#5ECDEF', # Default: "#5ECDEF"
 				container: document.body, # Default: document.body
-				count: 400, # 100 snowflakes. Default: 50
+				count: 300, # 100 snowflakes. Default: 50
 				minOpacity: 0.1, # From 0 to 1. Default: 0.6
 				maxOpacity: 0.95, # From 0 to 1. Default: 1
 				minSize: 10, # Default: 10
@@ -21,7 +21,7 @@ export def handleClick e, snow?
 				zIndex: 100, # Default: 9999,
 				autoResize: true # Default: true
 			})
-			setTimeout(&,8000) do() 
+			setTimeout(&,6000) do() 
 				snowflakes.stop()
 				snowflakes.destroy()
 	document.getElementById('englishTextInput').focus()

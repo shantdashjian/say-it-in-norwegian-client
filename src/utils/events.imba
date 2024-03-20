@@ -16,7 +16,7 @@ export def handleClick e, snow?
 			zIndex: 100, # Default: 9999,
 			autoResize: true # Default: true
 		})
-		setTimeout(&,4000) do() 
+		setTimeout(&,6000) do() 
 			snowflakes.stop()
 			snowflakes.destroy()
 	const button = getButton e

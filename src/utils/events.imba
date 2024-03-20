@@ -24,7 +24,6 @@ export def handleClick e, snow?
 			setTimeout(&,6000) do() 
 				snowflakes.stop()
 				snowflakes.destroy()
-	document.getElementById('englishTextInput').focus()
 	imba.commit()
 
 def getButton e
